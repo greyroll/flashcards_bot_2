@@ -3,6 +3,8 @@ from sqlmodel import SQLModel, Field, Relationship, Enum as SqlEnum
 from enums import LanguageMode, SessionCardState
 
 
+
+
 class SessionCard(SQLModel, table=True):
 	__tablename__ = "session_card"
 
@@ -15,7 +17,7 @@ class SessionCard(SQLModel, table=True):
 	is_hint_used: bool = False
 	created_at: datetime = Field(default_factory=lambda: datetime.now())
 
-	session: "Session" = Relationship(back_populates="session_cards")
+	session: "Session" = Relationship(back_populates="session_cards", sa_relationship_kwargs={"foreign_keys": "[SessionCard.session_id]"})  # 👈 обязательно!
 	card: "Card" = Relationship(back_populates="session_cards")
 
 	def get_public_side(self, language_mode: LanguageMode) -> str:

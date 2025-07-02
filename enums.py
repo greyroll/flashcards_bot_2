@@ -13,6 +13,7 @@ class LanguageMode(str, Enum):
 
 
 class SessionState(str, Enum):
+	CREATED = "created"
 	ACTIVE = "active"
 	FINISHED = "finished"
 	ABANDONED = "abandoned"

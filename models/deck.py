@@ -10,8 +10,8 @@ class Deck(SQLModel, table=True):
 	name: str
 	description: str | None
 
-	cards: list["Card"] = Relationship(back_populates="decks", link_model=DeckCard)
-	category: "Category" = Relationship(back_populates="decks", link_model=CategoryDeck)
+	cards: list["Card"] = Relationship(back_populates="linked_decks", link_model=DeckCard)
+	category: "Category" = Relationship(back_populates="decks_in_category", link_model=CategoryDeck)
 
 
 

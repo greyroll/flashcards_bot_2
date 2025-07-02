@@ -2,6 +2,8 @@ from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship, Enum as SqlEnum
 from enums import GameMode, LanguageMode, SessionState
 
+from models.session_card import SessionCard
+
 class Session(SQLModel, table=True):
 	__tablename__ = "session"
 
@@ -15,7 +17,7 @@ class Session(SQLModel, table=True):
 	created_at: datetime = Field(default_factory=lambda: datetime.now())
 	finished_at: datetime | None = Field(default=None)
 
-	session_cards: list["SessionCard"] = Relationship(back_populates="session")
+	session_cards: list["SessionCard"] = Relationship(back_populates="session", sa_relationship_kwargs={"foreign_keys": [SessionCard.session_id]})
 
 
 

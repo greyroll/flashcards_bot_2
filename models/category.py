@@ -13,6 +13,5 @@ class Category(SQLModel, table=True):
 
 	parent: "Category" = Relationship(back_populates="subcategories", sa_relationship_kwargs={"remote_side": "Category.id"})
 	subcategories: list["Category"] = Relationship(back_populates="parent")
-
-	decks: list["Category"] = Relationship(back_populates="category", link_model=CategoryDeck)
+	decks_in_category: list["Deck"] = Relationship(back_populates="category", link_model=CategoryDeck)
 

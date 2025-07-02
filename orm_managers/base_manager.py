@@ -1,16 +1,15 @@
 from pathlib import Path
 from sqlmodel import Session, create_engine, SQLModel
 
-from models import Card, Category, Deck, DeckCard, CategoryDeck, Session, SessionCard, User
+from models import Card, Category, Deck, DeckCard, CategoryDeck, Session as SessionModel, SessionCard, User
 from config import DB_PATH
 
 
-class BaseORMManager:
+class BaseManager:
 	model: SQLModel | None = None
 
 	def __init__(self):
-		db_path = Path(DB_PATH)
-		path = f"sqlite:///{db_path}"
+		path = f"sqlite:///{DB_PATH}"
 		print({"path": path})
 		self.engine = create_engine(path)
 

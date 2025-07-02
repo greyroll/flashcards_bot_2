@@ -11,7 +11,7 @@ class Card(SQLModel, table=True):
 	back: str
 	deck_id: int = Field(foreign_key="deck.id")
 
-	decks: list["Deck"] = Relationship(back_populates="cards", link_model=DeckCard)
+	linked_decks: list["Deck"] = Relationship(back_populates="cards", link_model=DeckCard)
 	session_cards: list["SessionCard"] = Relationship(back_populates="card")
 
 
