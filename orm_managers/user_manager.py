@@ -12,7 +12,7 @@ class UserManager(BaseManager):
 		with Session(self.engine) as session:
 			return session.exec(select(User).where(User.tg_id == tg_id)).one_or_none()
 
-	def create_user(self, tg_id: int, name: str, is_admin: bool = False) -> User:
+	def create(self, tg_id: int, name: str, is_admin: bool = False) -> User:
 		"""Create user and add to database."""
 		user = User(tg_id=tg_id, name=name, is_admin=is_admin)
 		self.add(user)

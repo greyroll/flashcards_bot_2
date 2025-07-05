@@ -1,4 +1,3 @@
-from pathlib import Path
 from sqlmodel import Session, create_engine, SQLModel
 
 from models import Card, Category, Deck, DeckCard, CategoryDeck, Session as SessionModel, SessionCard, User
@@ -10,7 +9,7 @@ class BaseManager:
 
 	def __init__(self):
 		path = f"sqlite:///{DB_PATH}"
-		print({"path": path})
+		# print({"path": path})
 		self.engine = create_engine(path)
 
 	def create_all_tables(self):

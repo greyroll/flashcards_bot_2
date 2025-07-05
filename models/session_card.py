@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlmodel import SQLModel, Field, Relationship, Enum as SqlEnum
+from sqlmodel import SQLModel, Field, Relationship, Column, Enum as SqlEnum
 from enums import LanguageMode, SessionCardState
 
 
@@ -11,7 +11,10 @@ class SessionCard(SQLModel, table=True):
 	id: int = Field(default=None, primary_key=True)
 	session_id: int = Field(foreign_key="session.id")
 	card_id: int = Field(foreign_key="card.id")
-	state: SessionCardState = Field(SqlEnum(SessionCardState))
+	state: SessionCardState = Field(
+    default=SessionCardState.NOT_OPENED,
+    sa_column=Column(SqlEnum(SessionCardState, name="sessioncardstate"))
+)
 	known_level: float = Field(default=0.0)
 	user_answer: str | None = Field(default=None)
 	is_hint_used: bool = False
