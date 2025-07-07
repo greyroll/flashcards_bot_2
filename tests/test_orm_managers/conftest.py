@@ -5,12 +5,7 @@ from sqlmodel import Session, SQLModel
 from config import LEARNED_THRESHOLD
 from enums import GameMode, LanguageMode, SessionState, SessionCardState
 from models import Category, Deck, User, Session as SessionModel, SessionCard, Card
-from orm_managers.card_manager import CardManager
-from orm_managers.category_manager import CategoryManager
-from orm_managers.deck_manager import DeckManager
-from orm_managers.session_manager import SessionManager
-from orm_managers.stats_manager import StatsManager
-from orm_managers.user_manager import UserManager
+from orm_managers import CardManager, CategoryManager, DeckManager, SessionManager, StatsManager, UserManager
 
 
 @pytest.fixture
